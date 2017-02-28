@@ -21,7 +21,7 @@ define Package/helloworld
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Helloworld -- prints a snarky message
-	DEPENDS:=+uclibcxx
+	DEPENDS:=+uclibcxx +libpcap
 endef
 
 define Package/libpcap/description
@@ -65,7 +65,7 @@ endef
 #########################################################################################
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
-		LIBS="-nodefaultlibs -lgcc -lc -luClibc++" \
+		LIBS="-nodefaultlibs -lgcc -lc -luClibc++ -lpcap" \
 		LDFLAGS="$(EXTRA_LDFLAGS)" \
 		CXXFLAGS="$(TARGET_CFLAGS) $(EXTRA_CPPFLAGS)" \
 		$(TARGET_CONFIGURE_OPTS) \
